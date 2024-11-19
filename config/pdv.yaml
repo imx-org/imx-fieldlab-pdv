@@ -1,0 +1,10 @@
+objectTypes:
+  NetWorth:
+    attributes:
+      bsn:
+        type: String
+        identifier: true
+        multiplicity: 1
+      netWorth:
+        type: Integer
+        multiplicity: 1

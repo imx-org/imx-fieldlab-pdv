@@ -1,0 +1,19 @@
+targetModel:
+  loader: yaml
+  location: config/pdv.yaml
+
+sourceModels:
+  bri:
+    loader: yaml
+    location: config/bri.yaml
+
+objectTypeMappings:
+  NetWorth:
+    - sourceRoot: bri:NetWorth
+      propertyMappings:
+        bsn:
+          pathMappings:
+            path: bsn
+        netWorth:
+          pathMappings:
+            path: netWorth

@@ -1,0 +1,33 @@
+logging:
+  level:
+    root: INFO
+
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.graphql.GraphQlAutoConfiguration
+  graphql:
+    path: /fieldlab-pdv/api
+    graphiql:
+      enabled: true
+      path: /fieldlab-pdv
+
+management:
+  server:
+    port: 8081
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+
+orchestrate:
+  mapping: config/pdv.mapping.yaml
+  sources:
+    bri:
+      type: rest
+      options:
+        baseUrl: https://toeslagen-fsc-outway.padv.apps.digilab.network/v0
+        headers:
+          Authorization: Basic ZGlnaWxhYjpwYWR2ZmllbGRsYWI=
+          Fsc-Grant-Hash: $1$3$cOHAor-pfjk454KCZVcplaTZyQdnmlPzCujEE9Oq3owRaDZAIVH9_Ce7GExrsPmxiQbC8sIM0LY40t3NcfF1Qw
+        paths:
+          NetWorth: personen
