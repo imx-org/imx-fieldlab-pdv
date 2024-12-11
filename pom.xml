@@ -36,12 +36,13 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <orchestrate.version>0.1.9</orchestrate.version>
-        <spring-boot.version>3.3.5</spring-boot.version>
+        <orchestrate.version>0.1.10-SNAPSHOT</orchestrate.version>
+        <spring-boot.version>3.4.0</spring-boot.version>
         <lombok.version>1.18.36</lombok.version>
         <auto-service.version>1.1.1</auto-service.version>
         <spotless.version>2.43.0</spotless.version>
-        <palantir.version>2.39.0</palantir.version>
+        <palantir.version>2.50.0</palantir.version>
+        <netty-resolver-dns-native-macos.version>4.1.115.Final</netty-resolver-dns-native-macos.version>
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
     </properties>
 
@@ -50,6 +51,12 @@
             <groupId>nl.geostandaarden.imx.orchestrate</groupId>
             <artifactId>orchestrate-gateway</artifactId>
             <version>${orchestrate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-resolver-dns-native-macos</artifactId>
+            <version>${netty-resolver-dns-native-macos.version}</version>
+            <classifier>osx-aarch_64</classifier>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

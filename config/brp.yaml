@@ -1,0 +1,58 @@
+objectTypes:
+  Persoon:
+    attributes:
+      burgerservicenummer:
+        type: String
+        identifier: true
+        multiplicity: 1
+      naam:
+        type: String
+        multiplicity: 1
+    relations:
+      geboorte:
+        target: Geboorte
+        multiplicity: 1
+      rni:
+        target: RniDeelnemer
+        multiplicity: 0..*
+
+  Geboorte:
+    relations:
+      datum:
+        target: AbstractDatum
+        multiplicity: 1
+
+  AbstractDatum:
+    attributes:
+      type:
+        type: String
+        multiplicity: 1
+      langFormaat:
+        type: String
+        multiplicity: 1
+      # TODO: Keuze tussen datatypen
+      datum:
+        type: String
+        multiplicity: 1
+
+  RniDeelnemer:
+    attributes:
+      omschrijvingVerdrag:
+        type: String
+        multiplicity: 0..1
+      categorie:
+        type: String
+        multiplicity: 0..1
+    relations:
+      deelnemer:
+        target: Waardetabel
+        multiplicity: 0..1
+
+  Waardetabel:
+    attributes:
+      code:
+        type: String
+        multiplicity: 0..1
+      omschrijving:
+        type: String
+        multiplicity: 0..1

@@ -31,3 +31,21 @@ orchestrate:
           Fsc-Grant-Hash: $1$3$cOHAor-pfjk454KCZVcplaTZyQdnmlPzCujEE9Oq3owRaDZAIVH9_Ce7GExrsPmxiQbC8sIM0LY40t3NcfF1Qw
         paths:
           NetWorth: personen
+    brp:
+      type: rest
+      options:
+        baseUrl: https://toeslagen-fsc-outway.padv.apps.digilab.network/haalcentraal/api/brp
+        headers:
+          Authorization: Basic ZGlnaWxhYjpwYWR2ZmllbGRsYWI=
+          Fsc-Grant-Hash: $1$3$DkL8zKue3Cdfw63e41CcRnXWQKXQ2C9o0FYG2vuFnK6E_qGv0YHifa4UvRWGj-6TnpgstkvO_Ojj-PCLdT1chg
+        paths:
+          Persoon: personen
+    uwv:
+      type: rest
+      options:
+        baseUrl: https://toeslagen-fsc-outway.padv.apps.digilab.network/v0
+        headers:
+          Authorization: Basic ZGlnaWxhYjpwYWR2ZmllbGRsYWI=
+          Fsc-Grant-Hash: $1$3$yr4FU7PHPI42xvTbYaMtRSQM_q8K0N9S4upmFI9GvxBZYeS1SB0pip3GvBoshXRhbXHx7P8ZEXNPgH5I_KF0xA
+        paths:
+          Income: personen

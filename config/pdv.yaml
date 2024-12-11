@@ -1,10 +1,38 @@
 objectTypes:
-  NetWorth:
+  Persoon:
     attributes:
       bsn:
         type: String
         identifier: true
         multiplicity: 1
-      netWorth:
+      isIngezetene:
+        type: Boolean
+        multiplicity: 1
+      leeftijd:
         type: Integer
         multiplicity: 1
+      vermogen:
+        type: Integer
+        multiplicity: 1
+      inkomenMaandelijks:
+        type: Integer
+        multiplicity: 1
+      inkomenJaarlijks:
+        type: Integer
+        multiplicity: 1
+
+  BeschikkingZorgtoeslag:
+    attributes:
+      bsn:
+        type: String
+        identifier: true
+        multiplicity: 0..1
+      gerechtigd:
+        type: Boolean
+        multiplicity: 0..1
+      bedrag:
+        type: Integer
+        multiplicity: 0..1
+      toelichting:
+        type: String
+        multiplicity: 0..1

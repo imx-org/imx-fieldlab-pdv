@@ -1,0 +1,20 @@
+objectTypes:
+  Income:
+    attributes:
+      bsn:
+        type: String
+        identifier: true
+        multiplicity: 1
+    relations:
+      income:
+        target: IncomeIncome
+        multiplicity: 1
+
+  IncomeIncome:
+    attributes:
+      monthly:
+        type: Integer
+        multiplicity: 1
+      yearly:
+        type: Integer
+        multiplicity: 1

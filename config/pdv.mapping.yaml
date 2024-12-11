@@ -6,14 +6,111 @@ sourceModels:
   bri:
     loader: yaml
     location: config/bri.yaml
+  brp:
+    loader: yaml
+    location: config/brp.yaml
+  uwv:
+    loader: yaml
+    location: config/uwv.yaml
+
+sourceRelations:
+  - sourceType: brp:Persoon
+    property:
+      name: income
+      target: uwv:Income
+      multiplicity: '1'
+      keyMapping:
+        bsn: burgerservicenummer
+  - sourceType: brp:Persoon
+    property:
+      name: netWorth
+      target: bri:NetWorth
+      multiplicity: '1'
+      keyMapping:
+        bsn: burgerservicenummer
 
 objectTypeMappings:
-  NetWorth:
-    - sourceRoot: bri:NetWorth
+  Persoon:
+    - sourceRoot: brp:Persoon
       propertyMappings:
         bsn:
           pathMappings:
-            path: bsn
-        netWorth:
+            path: burgerservicenummer
+        isIngezetene:
           pathMappings:
-            path: netWorth
+            path: rni/omschrijvingVerdrag
+            map:
+              type: isEmpty
+        leeftijd:
+          pathMappings:
+            path: geboorte/datum/datum
+            map:
+              type: age
+        vermogen:
+          pathMappings:
+            path: netWorth/netWorth
+            map:
+              type: divide
+              options:
+                factor: 100
+        inkomenMaandelijks:
+          pathMappings:
+            path: income/income/monthly
+            map:
+              type: divide
+              options:
+                factor: 100
+        inkomenJaarlijks:
+          pathMappings:
+            path: income/income/yearly
+            map:
+              type: divide
+              options:
+                factor: 100
+
+  BeschikkingZorgtoeslag:
+    - sourceRoot: brp:Persoon
+      conditionalMappings:
+        - when:
+            - pathMappings:
+                path: rni/omschrijvingVerdrag
+                map:
+                  type: isEmpty
+              condition:
+                eq: true
+            - pathMappings:
+                path: geboorte/datum/datum
+                map:
+                  type: age
+              condition:
+                gte: 18
+          then:
+            mapping:
+              - when:
+                  - pathMappings:
+                      - path: income/income/yearly
+                        map:
+                          type: divide
+                          options:
+                            factor: 100
+                      - path: netWorth/netWorth
+                        map:
+                          type: divide
+                          options:
+                            factor: 100
+                    combiner:
+                      type: sum
+                    condition:
+                      lte: 26819
+                then:
+                  values:
+                    gerechtigd: true
+                    bedrag: 1350
+                otherwise:
+                  values:
+                    gerechtigd: false
+                    toelichting: Inkomen en vermogen opgeteld dient maximaal 26819 te zijn om recht te hebben op zorgtoeslag.
+          otherwise:
+            values:
+              gerechtigd: false
+              toelichting: Persoon dient een ingezetene van 18 jaar of ouder te zijn om recht te hebben op zorgtoeslag.
