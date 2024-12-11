@@ -73,11 +73,9 @@ objectTypeMappings:
       conditionalMappings:
         - when:
             - pathMappings:
-                path: rni/omschrijvingVerdrag
-                map:
-                  type: isEmpty
+                path: opschortingBijhouding/code
               condition:
-                eq: true
+                notIn: ["E", "R"]
             - pathMappings:
                 path: geboorte/datum/datum
                 map:

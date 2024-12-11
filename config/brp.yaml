@@ -15,6 +15,9 @@ objectTypes:
       rni:
         target: RniDeelnemer
         multiplicity: 0..*
+      opschortingBijhouding:
+        target: Waardetabel
+        multiplicity: 0..1
 
   Geboorte:
     relations:
